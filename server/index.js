@@ -3,7 +3,7 @@ import cors from "cors";
 //import * as data from "./sample-data.js";
 import sequelize from "sequelize";
 import { Restaurant, Review, User } from "./models.js";
-import { checkJwt, getUser } from "./auth0.js";
+import { checkJwt, getUser } from "./Auth0.js";
 
 const app = express();
 app.use(cors());

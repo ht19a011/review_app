@@ -21,9 +21,9 @@ export async function getRestaurantReviews(restaurantId, arg = {}) {
 export async function postRestaurantReview(
   restaurantId,
   record,
-  getAccessToken
+  getAccessTokenSilently
 ) {
-  const token = await getAccessToken({
+  const token = await getAccessTokenSilently({
     audience: process.env.REACT_APP_AUTH0_AUDIENCE,
   });
   return request(`/restaurants/${restaurantId}/reviews`, {

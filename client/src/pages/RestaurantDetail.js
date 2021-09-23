@@ -8,6 +8,7 @@ import {
   postRestaurantReview,
 } from "../api.js";
 
+
 function Form({ onSubmit }) {
   const { isAuthenticated } = useAuth0();
 
@@ -62,7 +63,7 @@ function Form({ onSubmit }) {
             レビューを投稿
           </button>
         </div>
-        <p className="help">ログインが必要です。</p>
+        <p hidden={isAuthenticated}  >ログインが必要です。</p>
       </div>
     </form>
   );
@@ -125,6 +126,7 @@ export function RestaurantDetailPage() {
   const [reviews, setReviews] = useState(null);
 
   const { getAccessTokenWithPopup } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const params = useParams();
   const location = useLocation();
@@ -151,7 +153,7 @@ export function RestaurantDetailPage() {
     await postRestaurantReview(
       params.restaurantId,
       record,
-      getAccessTokenWithPopup
+      getAccessTokenSilently
     );
     const data = await getRestaurantReviews(params.restaurantId, {
       limit: perPage,
